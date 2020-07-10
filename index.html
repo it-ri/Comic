@@ -1,0 +1,41 @@
+ <!DOCTYPE html>
+ <html lang="ja">
+   <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+ 　　<!-- vue.js　-->
+     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+     <link rel="manifest" href="manifest.json">
+     <title>PWA Sample</title>
+   </head>
+   <body>
+  <div>
+     <input type="file" @change="setImage($event)"/>
+     <img :src="data.image">
+  </div>
+<script>
+export default {
+  data() {
+    return {
+      data: {
+        text: "",
+        image: "",
+        name: "",
+      }
+    };
+  },
+  methods: {
+    setImage(event) {
+      const file = (e.target.files || e.dataTransfer)[0]
+      if (file.type.startsWith("image/")) {
+        this.data.image = window.URL.createObjectURL(file);
+        this.data.name = file.name;
+        this.data.type = file.type;
+      }
+    },
+
+  }
+};
+</script>
+   </body>
+ </html>
